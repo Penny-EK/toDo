@@ -5,6 +5,7 @@ let finishArr = [];
 // DOM elements
 const submit = document.querySelector("#submit");
 const clearDeletedBtn = document.querySelector("#clearDeletedBtn");
+const deleteBtn = document.querySelector(".deleteBtn");
 
 const todoContainer = document.querySelector("#todoContainer");
 const finishContainer = document.querySelector("#finishContainer");
@@ -37,10 +38,7 @@ function saveTodos() {
 }
 
 loadTodos();
-writeTodos();
-writeFinished();
-writeDeleted();
-
+refresh();
 // Adds a new todo to the list
 function submitToDo() {
   const todoObj = {
@@ -52,99 +50,35 @@ function submitToDo() {
   };
   toDoArr.unshift(todoObj); // Add to the beginning of the array
   saveTodos();
-  writeTodos();
-  writeFinished();
-  writeDeleted();
+  refresh();
 }
 
 // prints the list of active todos
 function writeTodos() {
   print(todoContainer, toDoArr);
-
-  todoContainer.querySelectorAll("li").forEach((li) => {
-    const checkBox = li.querySelector("input");
-    const deleteBtn = li.querySelector(".deleteBtn");
-
-    // When checkbox is checked, move todo to finished list
-    checkBox.addEventListener("change", () => {
-      const obj = toDoArr.find((toDo) => toDo.id === li.dataset.id);
-      if (obj) {
-        obj.done = true;
-        toDoArr.splice(toDoArr.indexOf(obj), 1);
-        finishArr.unshift(obj);
-      }
-
-      saveTodos();
-      writeTodos();
-      writeFinished();
-      writeDeleted();
-    });
-
-    deleteBtn.addEventListener("click", () => {
-      const obj = toDoArr.find((t) => t.id === li.dataset.id);
-      if (obj) {
-        toDoArr.splice(toDoArr.indexOf(obj), 1);
-        deleteArr.unshift(obj);
-        console.log("DeleteArr:", deleteArr);
-      }
-      saveTodos();
-      writeTodos();
-      writeDeleted();
-    });
-  });
 }
 
 // Renders the list of finished todos
 function writeFinished() {
   print(finishContainer, finishArr);
-
-  // Add event listeners for checkboxes and delete buttons
-  finishContainer.querySelectorAll("li").forEach((li) => {
-    const checkBox = li.querySelector("input");
-    const deleteBtn = li.querySelector(".deleteBtn");
-
-    // When checkbox is unchecked, move todo back to active list
-    checkBox.addEventListener("change", () => {
-      if (!checkBox.checked) {
-        const obj = finishArr.find((toDo) => toDo.id === li.dataset.id);
-        if (obj) {
-          obj.done = false;
-          finishArr.splice(finishArr.indexOf(obj), 1);
-          toDoArr.unshift(obj);
-        }
-        saveTodos();
-        writeTodos();
-        writeFinished();
-        writeDeleted();
-      }
-    });
-
-    // When delete button is clicked, move todo to deleted list
-    deleteBtn.addEventListener("click", () => {
-      const obj = finishArr.find((t) => t.id === li.dataset.id);
-      if (obj) {
-        finishArr.splice(finishArr.indexOf(obj), 1);
-        deleteArr.unshift(obj);
-        console.log("DeleteArr:", deleteArr);
-      }
-      saveTodos();
-      writeFinished();
-      writeDeleted();
-    });
-  });
 }
 
 // prints the deleted todos
 function writeDeleted() {
   print(deleteContainer, deleteArr);
+  if (clearDeletedBtn) {
+    clearDeletedBtn.onclick = function () {
+      deleteArr = [];
+      saveTodos();
+      writeDeleted();
+    };
+  }
 }
 
-if (clearDeletedBtn) {
-  clearDeletedBtn.onclick = function () {
-    deleteArr = [];
-    saveTodos();
-    writeDeleted();
-  };
+function refresh() {
+  writeTodos();
+  writeFinished();
+  writeDeleted();
 }
 
 // print function to render todos in a given container
@@ -169,5 +103,45 @@ function print(container, arr) {
         ${arr === deleteArr ? "" : '<button class="deleteBtn">delete</button>'}
       </li>
       `;
+  });
+
+  container.querySelectorAll("li").forEach((li) => {
+    const checkBox = li.querySelector("input[type='checkbox']");
+    if (!checkBox) return;
+    checkBox.addEventListener("change", () => {
+      if (arr === toDoArr && checkBox.checked) {
+        // Move from active to finished
+        const obj = toDoArr.find((toDo) => toDo.id === li.dataset.id);
+        if (obj) {
+          obj.done = true;
+          toDoArr.splice(toDoArr.indexOf(obj), 1);
+          finishArr.unshift(obj);
+        }
+      } else if (arr === finishArr && !checkBox.checked) {
+        // Move from finished to active
+        const obj = finishArr.find((toDo) => toDo.id === li.dataset.id);
+        if (obj) {
+          obj.done = false;
+          finishArr.splice(finishArr.indexOf(obj), 1);
+          toDoArr.unshift(obj);
+        }
+      }
+
+      saveTodos();
+      refresh();
+    });
+    if (arr !== deleteArr) {
+      const deleteBtn = li.querySelector(".deleteBtn");
+      deleteBtn.addEventListener("click", () => {
+        const obj = arr.find((t) => t.id === li.dataset.id);
+        if (obj) {
+          arr.splice(arr.indexOf(obj), 1);
+          deleteArr.unshift(obj);
+          console.log("DeleteArr:", deleteArr);
+        }
+        saveTodos();
+        refresh();
+      });
+    }
   });
 }
