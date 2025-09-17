@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="layout.css" />
+    <title>To-Do list</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.webp" />
+
+    <!-- nunito font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>Your To-do list</h1>
+    </header>
+    <main>
+      <div class="grid_2-1">
+        <form class="input_field grid_2-1">
+          <input type="text" id="todoNameInput" placeholder="Task name" />
+          <input type="date" id="dateInput" />
+          <input type="text" id="todoDescInput" placeholder="Description" />
+          <select id="priorityInput">
+            <option value="" disabled selected>Set priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <input type="text" id="tagInput" placeholder="Tag" />
+          <button id="submit">add task</button>
+        </form>
+        <div class="motivational_cat">
+          <img src="https://cataas.com/cat" alt="motivational cat" />
+          <p>a cat to motivate you 🐱</p>
+        </div>
+      </div>
+      <h2>Stuff you gotta do!</h2>
+      <ul id="todoContainer" class="grid_1-1"></ul>
+
+      <div class="divider"></div>
+      <div class="grid_1-1 grid_rows">
+        <div>
+          <h2>stuff you already did!</h2>
+        </div>
+        <div>
+          <div>
+            <h2>Stuff you gave up on...</h2>
+          </div>
+        </div>
+        <ul id="finishContainer"></ul>
+        <div>
+          <ul id="deleteContainer"></ul>
+          <button id="clearDeletedBtn">Clear deleted tasks</button>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="divider"></div>
+      <p class="flex_center">Made with ❤️ by Penny Vera</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

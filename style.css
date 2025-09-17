@@ -1,0 +1,186 @@
+/*************** Reset *********************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+html {
+  --red: #a65959;
+  --green: #59a659;
+  --primary: #5959a6;
+  --orange: #a69659;
+  --black: #090808;
+  --white: #f9f9f9;
+}
+
+body {
+  background: #f5f5f5;
+  max-width: 1500px;
+  margin: 0 auto;
+  font-family: Nunito, sans-serif;
+  padding: 20px;
+}
+main {
+  min-height: 80vh;
+}
+h1,
+h2,
+h3 {
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: capitalize;
+  color: var(--black);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 20px 0px 10px 0px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+li {
+  display: inline-flex;
+  padding: 1.25rem;
+  align-items: flex-start;
+  gap: 1.25rem;
+  border-radius: 0.625rem;
+  background: #f9f9f9;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* motivational cat */
+.motivational_cat {
+  text-align: center;
+}
+.motivational_cat img {
+  width: 200px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.motivational_cat p {
+  position: relative;
+  top: -30px;
+  left: -300px;
+  border-radius: 0.375rem;
+  background: #fff;
+  display: inline-flex;
+  padding: 0.625rem 1.25rem;
+  color: #090808;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  align-items: center;
+}
+
+.todoTag {
+  background: var(--orange);
+}
+
+/* priority tags */
+.low {
+  color: var(--green);
+}
+.medium {
+  color: var(--orange);
+}
+.high {
+  color: var(--red);
+}
+
+.todoPriority {
+  text-transform: capitalize;
+}
+
+#finishContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#deleteContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* input boxes */
+.input_field {
+  border-radius: 0.625rem;
+  background: #f9f9f9;
+  width: 39.61169rem;
+  height: 10.21206rem;
+  flex-shrink: 0;
+  padding: 20px;
+}
+input {
+  padding: 5px;
+  border: 1px solid #000;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+/* buttons */
+button {
+  cursor: pointer;
+  background-color: var(--primary);
+  color: #f9f9f9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  padding: 0.125rem 0.625rem;
+  align-items: center;
+  border-radius: 0.125rem;
+  text-transform: uppercase;
+  width: fit-content;
+  border: none;
+  min-width: 150px;
+  justify-content: center;
+}
+
+/* Shared button styles for .deleteBtn and .todoTag */
+.deleteBtn,
+.todoTag {
+  color: #f9f9f9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  padding: 0.125rem 0.625rem;
+  align-items: center;
+  border-radius: 0.125rem;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.deleteBtn {
+  background: var(--red);
+}
+
+.divider {
+  border-top: 5px dotted var(--primary);
+  margin: 20px 0;
+}
