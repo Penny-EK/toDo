@@ -39,17 +39,14 @@ h3 {
   line-height: normal;
   text-transform: capitalize;
   color: var(--black);
+  margin: 10px 0px 10px 0px;
 }
 
 h1 {
   font-size: 2.5rem;
 }
 
-h2 {
-  font-size: 1.5rem;
-  margin: 20px 0px 10px 0px;
-}
-
+h2,
 h3 {
   font-size: 1.5rem;
 }
@@ -66,17 +63,17 @@ li {
 }
 
 /* motivational cat */
-.motivational_cat {
+.motivationalCat {
   text-align: center;
 }
-.motivational_cat img {
+.motivationalCat img {
   width: 200px;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 10px;
 }
-.motivational_cat p {
+.motivationalCat p {
   position: relative;
   top: -30px;
   left: -300px;
@@ -91,10 +88,6 @@ li {
   line-height: normal;
   text-transform: uppercase;
   align-items: center;
-}
-
-.todoTag {
-  background: var(--orange);
 }
 
 /* priority tags */
@@ -125,7 +118,7 @@ li {
 }
 
 /* input boxes */
-.input_field {
+.inputField {
   border-radius: 0.625rem;
   background: #f9f9f9;
   width: 39.61169rem;
