@@ -40,6 +40,12 @@ function saveTodos() {
 loadTodos();
 refresh();
 
+function refresh() {
+  writeTodos();
+  writeFinished();
+  writeDeleted();
+}
+
 // Adds a new todo to the list
 function submitToDo() {
   const todoObj = {
@@ -74,12 +80,6 @@ function writeDeleted() {
       writeDeleted();
     };
   }
-}
-
-function refresh() {
-  writeTodos();
-  writeFinished();
-  writeDeleted();
 }
 
 // print function to render todos in a given container
