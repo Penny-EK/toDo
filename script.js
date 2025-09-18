@@ -39,16 +39,17 @@ function saveTodos() {
 
 loadTodos();
 refresh();
+
 // Adds a new todo to the list
 function submitToDo() {
   const todoObj = {
     name: todoNameInput.value,
-    id: self.crypto.randomUUID(), // Unique ID for each todo
+    id: self.crypto.randomUUID(),
     done: false,
     description: todoDescInput.value,
     priority: priorityInput.value,
   };
-  toDoArr.unshift(todoObj); // Add to the beginning of the array
+  toDoArr.unshift(todoObj);
   saveTodos();
   refresh();
 }
@@ -83,7 +84,6 @@ function refresh() {
 
 // print function to render todos in a given container
 function print(container, arr) {
-  console.log("print function");
   // make sure container is empty.
   container.innerHTML = "";
   // run through the array and create an li for each todo
