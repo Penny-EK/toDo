@@ -129,6 +129,7 @@ li {
 input {
   padding: 5px;
   border: 1px solid #000;
+  height: 50px;
 }
 
 select {
@@ -153,11 +154,12 @@ button {
   border: none;
   min-width: 150px;
   justify-content: center;
+  width: 100%;
+  height: 50px;
 }
 
 /* Shared button styles for .deleteBtn and .todoTag */
-.deleteBtn,
-.todoTag {
+.deleteBtn {
   color: #f9f9f9;
   font-size: 0.75rem;
   font-weight: 700;
@@ -167,6 +169,7 @@ button {
   border-radius: 0.125rem;
   text-transform: uppercase;
   width: fit-content;
+  height: 30px;
 }
 
 .deleteBtn {
